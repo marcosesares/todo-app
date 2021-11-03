@@ -9,9 +9,21 @@ export default (props) => {
         <td>{todo.description}</td>
         <td>
           <IconButton
+            style="success"
+            icon="check"
+            hide={todo.done}
+            onClick={() => props.handleMarkAsDone(todo)}
+          ></IconButton>
+          <IconButton
+            style="warning"
+            icon="undo"
+            hide={!todo.done}
+            onClick={() => props.handleMarkAsPending(todo)}
+          ></IconButton>
+          <IconButton
             style="danger"
             icon="trash-o"
-            onClick={() => props.handleRemoveTodo(todo)}
+            onClick={() => props.handleRemove(todo)}
           ></IconButton>
         </td>
       </tr>
@@ -23,7 +35,7 @@ export default (props) => {
       <thead>
         <tr>
           <th>Descrição</th>
-          <th>Ações</th>
+          <th className="tableActions">Ações</th>
         </tr>
       </thead>
       <tbody>{renderRows()}</tbody>
